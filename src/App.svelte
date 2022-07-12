@@ -1,65 +1,55 @@
-<script lang="ts">
-  import logo from './assets/svelte.png'
-  import Counter from './lib/Counter.svelte'
+<script>
+    import {flags} from './lib/flags.ts';
+    import Country from './lib/components/Country.svelte';
+    import FAB from './lib/components/FAB.svelte';
+    import ResultModal from './lib/components/ResultModal.svelte';
+
+    $: checked = [];
+    $: modalIsOpened = false;
+
+    function onCountryClick(country) {
+        const index = checked.indexOf(country);
+        if (index !== -1) {
+            checked.splice(index, 1);
+
+            checked = [...checked];
+
+            return;
+        }
+
+        checked = [...checked, country];
+    }
 </script>
 
-<main>
-  <img src={logo} alt="Svelte Logo" />
-  <h1>Hello Typescript!</h1>
-
-  <Counter />
-
-  <p>
-    Visit <a href="https://svelte.dev">svelte.dev</a> to learn how to build Svelte
-    apps.
-  </p>
-
-  <p>
-    Check out <a href="https://github.com/sveltejs/kit#readme">SvelteKit</a> for
-    the officially supported framework, also powered by Vite!
-  </p>
-</main>
+<section>
+    <div class="list">
+        {#each Object.entries(flags) as [flag, country]}
+            <Country
+                    {flag}
+                    name={country}
+                    checked={!!checked.includes(flag)}
+                    on:click={() => onCountryClick(flag)}
+            />
+        {/each}
+    </div>
+    {#if Object.entries(checked).length > 0}
+        <FAB on:click={() => {modalIsOpened = true}}>🌐</FAB>
+    {/if}
+    <ResultModal bind:isOpened={modalIsOpened} flags={checked}/>
+</section>
 
 <style>
-  :root {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  }
-
-  main {
-    text-align: center;
-    padding: 1em;
-    margin: 0 auto;
-  }
-
-  img {
-    height: 16rem;
-    width: 16rem;
-  }
-
-  h1 {
-    color: #ff3e00;
-    text-transform: uppercase;
-    font-size: 4rem;
-    font-weight: 100;
-    line-height: 1.1;
-    margin: 2rem auto;
-    max-width: 14rem;
-  }
-
-  p {
-    max-width: 14rem;
-    margin: 1rem auto;
-    line-height: 1.35;
-  }
-
-  @media (min-width: 480px) {
-    h1 {
-      max-width: none;
+    section {
+        flex: 1;
+        max-height: 100vh;
+        display: flex;
+        flex-direction: column;
     }
 
-    p {
-      max-width: none;
+    section > div.list {
+        flex: 1;
+        display: flex;
+        overflow-y: scroll;
+        flex-direction: column;
     }
-  }
 </style>
