@@ -72,7 +72,7 @@ export const flags = {
     '🇪🇷': 'ERITREA',
     '🇪🇸': 'SPAIN',
     '🇪🇹': 'ETHIOPIA',
-    '🇪🇺': 'EUROPEAN UNION',
+    // '🇪🇺': 'EUROPEAN UNION',
     '🇫🇮': 'FINLAND',
     '🇫🇯': 'FIJI',
     '🇫🇰': 'FALKLAND ISLANDS',
@@ -238,7 +238,7 @@ export const flags = {
     '🇺🇦': 'UKRAINE',
     '🇺🇬': 'UGANDA',
     '🇺🇲': 'U.S. OUTLYING ISLANDS',
-    '🇺🇳': 'UNITED NATIONS',
+    // '🇺🇳': 'UNITED NATIONS',
     '🇺🇸': 'UNITED STATES',
     '🇺🇾': 'URUGUAY',
     '🇺🇿': 'UZBEKISTAN',
@@ -257,7 +257,7 @@ export const flags = {
     '🇿🇦': 'SOUTH AFRICA',
     '🇿🇲': 'ZAMBIA',
     '🇿🇼': 'ZIMBABWE',
-    '🏴󠁧󠁢󠁥󠁮󠁧󠁿': 'ENGLAND',
-    '🏴󠁧󠁢󠁳󠁣󠁴󠁿': 'SCOTLAND',
-    '🏴󠁧󠁢󠁷󠁬󠁳󠁿': 'WALES'
+    // '🏴󠁧󠁢󠁥󠁮󠁧󠁿': 'ENGLAND',
+    // '🏴󠁧󠁢󠁳󠁣󠁴󠁿': 'SCOTLAND',
+    // '🏴󠁧󠁢󠁷󠁬󠁳󠁿': 'WALES'
 };
