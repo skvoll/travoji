@@ -1,8 +1,15 @@
 <script>
     import { fly } from 'svelte/transition';
+
+    export let counter;
 </script>
 
-<button transition:fly="{{ y: 100, duration: 400 }}" on:click><slot /></button>
+<button transition:fly="{{ y: 100, duration: 400 }}" on:click>
+    <slot />
+    {#if counter}
+        <span>{counter}</span>
+    {/if}
+</button>
 
 <style>
 	button {
@@ -23,4 +30,18 @@
 	button:active {
 		box-shadow: none;
 	}
+
+    button > span {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 24px;
+        width: 24px;
+        font-size: .5em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: aqua;
+        border-radius: 50%;
+    }
 </style>

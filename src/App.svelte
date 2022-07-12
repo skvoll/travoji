@@ -1,10 +1,12 @@
 <script>
+    import JsCookie from 'js-cookie';
+
     import {flags} from './lib/flags.ts';
     import Country from './lib/components/Country.svelte';
     import FAB from './lib/components/FAB.svelte';
     import ResultModal from './lib/components/ResultModal.svelte';
 
-    $: checked = [];
+    $: checked = JsCookie.get('travoji')?.split('-') || [];
     $: modalIsOpened = false;
 
     function onCountryClick(country) {
@@ -13,11 +15,11 @@
             checked.splice(index, 1);
 
             checked = [...checked];
-
-            return;
+        } else {
+            checked = [...checked, country];
         }
 
-        checked = [...checked, country];
+        JsCookie.set('travoji', checked.join('-'));
     }
 </script>
 
@@ -33,7 +35,7 @@
         {/each}
     </div>
     {#if Object.entries(checked).length > 0}
-        <FAB on:click={() => {modalIsOpened = true}}>🌐</FAB>
+        <FAB bind:counter={checked.length} on:click={() => {modalIsOpened = true}}>🌐</FAB>
     {/if}
     <ResultModal bind:isOpened={modalIsOpened} flags={checked}/>
 </section>
