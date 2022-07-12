@@ -5,7 +5,7 @@
     export let isOpened = false;
     export let isCopied = false;
 
-    $: result = `${flags.join('')} #travoji`;
+    $: result = `${flags.sort().join('')} #travoji`;
 
     function copy() {
         navigator.clipboard.writeText(result).then(() => {
