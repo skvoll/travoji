@@ -25,6 +25,7 @@
         box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.5);
         font-size: 2em;
         background: aquamarine;
+        padding: 0;
     }
 
     button:active {
