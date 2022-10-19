@@ -8,8 +8,14 @@
     import ResultModal from './lib/components/ResultModal.svelte';
 
     const saved = JsCookie.get('travoji');
+    const imported =
+        window.location.hash.length > 0
+            ? window.location.hash.slice(1).split('-').map(decodeURIComponent).filter((flag) => Object.keys(flags).includes(flag))
+            : [];
 
-    $: checked = saved ? saved.split('-') : [];
+    console.log(imported);
+
+    $: checked = saved ? saved.split('-') : imported;
     $: search = '';
     $: modalIsOpened = false;
     $: aboutIsOpened = false;
@@ -26,6 +32,7 @@
         }
 
         JsCookie.set('travoji', checked.join('-'));
+        window.location.hash = checked.join('-');
     }
 </script>
 
